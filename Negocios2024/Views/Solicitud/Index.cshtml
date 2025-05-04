@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Negocios2024.Models.Solicitud>
+
+@{
+    ViewBag.Title = "Index";
+    var empleados = ViewBag.Empleados as IEnumerable<Negocios2024.Models.Empleado>;
+}
+
+<h2 class="text-center text-uppercase text-primary">Lista de Solicitudes</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Aside para la lista de empleados -->
+        <aside class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">Empleados</h4>
+                </div>
+                <div class="card-body">
+                    @if (empleados != null)
+                    {
+                        <ul class="list-group">
+                            @foreach (var emp in empleados)
+                            {
+                                <li class="list-group-item">
+                                    @Html.ActionLink(emp.apeempleado, "Consultar", new { id = emp.idempleado }, new { @class = "text-decoration-none" })
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">No hay empleados disponibles</div>
+                    }
+                </div>
+            </div>
+        </aside>
+
+
+        <section class="col-md-9">
+            <p>
+                @Html.ActionLink("Nueva Solicitud", "Crear", null, new { @class = "btn btn-primary me-2" })
+                @Html.ActionLink("Listado General", "Index", null, new { @class = "btn btn-success" })
+            </p>
+
+            <div class="card border-primary">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered border-primary" style="border-width: 3px !important;">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.nsol)
+                                    </th>
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.fsol)
+                                    </th>
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.cliente)
+                                    </th>
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.dircliente)
+                                    </th>
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.idempleado)
+                                    </th>
+                                    <th style="border: 3px solid #0d6efd; padding: 12px;">
+                                        @Html.DisplayNameFor(model => model.monto)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.nsol)
+                                        </td>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.fsol)
+                                        </td>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.cliente)
+                                        </td>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.dircliente)
+                                        </td>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.idempleado)
+                                        </td>
+                                        <td style="border: 2px solid #0d6efd; padding: 10px;">
+                                            @Html.DisplayFor(modelItem => item.monto)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
